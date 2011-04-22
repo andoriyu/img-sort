@@ -9,6 +9,8 @@ require 'rmagick'
 class ImgSort
   attr_reader :options
 
+  VERSION="0.1.0"
+
   def initialize(arguments = {})
     @arguments = arguments
     # Set defaults
@@ -103,7 +105,7 @@ class ImgSort
     end
     
     def output_version
-      #puts "#{File.basename(__FILE__)} version #{VERSION}"
+      puts "#{File.basename(__FILE__)} version #{VERSION}"
     end
     
     def sort!(from, to)

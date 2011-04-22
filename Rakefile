@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "img-sort"
   gem.homepage = "http://github.com/andoriyu/img-sort"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Image sorter}
+  gem.description = %Q{Sort images by their resolution and rename it if needed}
   gem.email = "with.out@me.com"
   gem.authors = ["Andrey Cherkashin"]
   
