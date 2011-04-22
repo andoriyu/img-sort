@@ -1,6 +1,21 @@
 = img-sort
 
-Description goes here.
+img-sort images by their resolution.
+
+== Usage
+
+img-sort [options] <source dir> <dst dir>
+    -v, --version                    Show version
+    -u, --usage                      Show usage
+    -V, --verbose                    Be verbose
+    -q, --quiet                      Be quite
+    -h, --rename                     Change file name to hash from that file (default)
+    -n, --no-rename                  Save original name
+
+== Examples
+
+img-sort -V ~/Desktop/wallpaper_tmp ~/Pictures/Wallpapers
+img-sort -qn ~/Desktop/wallpaper_tmp ~/Pictures/Wallpapers
 
 == Contributing to img-sort
  
