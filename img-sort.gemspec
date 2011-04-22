@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "bin/img-sort",
+    "img-sort.gemspec",
     "lib/img-sort.rb",
     "spec/img-sort_spec.rb",
     "spec/spec_helper.rb"
