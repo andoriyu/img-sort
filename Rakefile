@@ -19,6 +19,11 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{TODO: longer description of your gem}
   gem.email = "with.out@me.com"
   gem.authors = ["Andrey Cherkashin"]
+  
+  gem.add_runtime_dependency 'optparse' 
+  gem.add_runtime_dependency 'ostruct'
+  gem.add_runtime_dependency 'fileutils'
+  gem.add_runtime_dependency 'rmagick'
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
