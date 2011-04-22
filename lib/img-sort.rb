@@ -26,7 +26,7 @@ class ImgSort
   # Parse options, check arguments, then process the command
   def run
         
-    if parsed_options?
+    if parsed_options? && arguments_valid?
 
       @start_date = Time.now
       puts "Start at #{@start_date}\n" if @options.verbose
@@ -69,7 +69,7 @@ class ImgSort
 
   
     def parsed_options?
-      @opt_parser.parse!(@arguments) #rescue  puts "Argument error.\nArguments: #{@arguments.inspect}\n" ; return false 
+      @opt_parser.parse!(@arguments) rescue  puts "Argument error.\nArguments: #{@arguments.inspect}\n" ; return false 
       process_options
       true      
     end
@@ -91,7 +91,7 @@ class ImgSort
     # True if required arguments were provided
     def arguments_valid?
       # TO DO - implement your real logic here
-      true if @arguments.length > 2 
+      true if (@arguments[0].is_a?(String) && @arguments[1].is_a?(String))
     end
     
     def output_help
