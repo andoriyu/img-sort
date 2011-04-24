@@ -19,7 +19,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{Sort images by their resolution and rename it if needed}
   gem.email = "with.out@me.com"
   gem.authors = ["Andrey Cherkashin"]
-  
+  gem.executables = ['img-sort']
   gem.add_runtime_dependency 'rmagick'
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
