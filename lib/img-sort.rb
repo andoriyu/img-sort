@@ -9,7 +9,7 @@ require 'rmagick'
 class ImgSort
   attr_reader :options
 
-  VERSION="0.1.0"
+  VERSION=File.new("VERSION").gets
 
   def initialize(arguments = {})
     @arguments = arguments
@@ -26,7 +26,7 @@ class ImgSort
   # Parse options, check arguments, then process the command
   def run
         
-    if parsed_options? && arguments_valid?
+    if (parsed_options? && arguments_valid?)
 
       @start_date = Time.now
       puts "Start at #{@start_date}\n" if @options.verbose
@@ -69,7 +69,12 @@ class ImgSort
 
   
     def parsed_options?
-      @opt_parser.parse!(@arguments) rescue  puts "Argument error.\nArguments: #{@arguments.inspect}\n" ; return false 
+      begin
+        @opt_parser.parse!(@arguments)
+      rescue 
+        puts "Argument error.\nArguments: #{@arguments.inspect}\n"
+        return false 
+      end
       process_options
       true      
     end
@@ -90,7 +95,6 @@ class ImgSort
 
     # True if required arguments were provided
     def arguments_valid?
-      # TO DO - implement your real logic here
       true if (@arguments[0].is_a?(String) && @arguments[1].is_a?(String))
     end
     
