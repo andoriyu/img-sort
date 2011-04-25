@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrey Cherkashin"]
-  s.date = %q{2011-04-24}
+  s.date = %q{2011-04-25}
   s.description = %q{Sort images by their resolution and rename it if needed}
   s.email = %q{with.out@me.com}
   s.executables = ["img-sort"]
