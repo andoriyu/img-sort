@@ -9,7 +9,7 @@ require 'rmagick'
 class ImgSort
   attr_reader :options
 
-  VERSION=File.new("VERSION").gets
+  VERSION="0.1.3"
 
   def initialize(arguments = {})
     @arguments = arguments
