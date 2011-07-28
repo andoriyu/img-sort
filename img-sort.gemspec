@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{img-sort}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Andrey Cherkashin"]
-  s.date = %q{2011-04-25}
+  s.authors = [%q{Andrey Cherkashin}]
+  s.date = %q{2011-07-28}
   s.description = %q{Sort images by their resolution and rename it if needed}
   s.email = %q{with.out@me.com}
-  s.executables = ["img-sort"]
+  s.executables = [%q{img-sort}]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
@@ -33,9 +33,9 @@ Gem::Specification.new do |s|
     "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/andoriyu/img-sort}
-  s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.7.2}
+  s.licenses = [%q{MIT}]
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.3}
   s.summary = %q{Image sorter}
   s.test_files = [
     "spec/img-sort_spec.rb",
