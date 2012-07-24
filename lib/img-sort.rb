@@ -19,6 +19,9 @@ class ImgSort
     @options.quiet = false
     @options.rename = true
     @options.hash_function = 'md5'
+
+    @options.unsort = false
+    @options.copy = false
     # Init options parser
     @opt_parser = self.opts_parser
   end
@@ -32,8 +35,7 @@ class ImgSort
       puts "Start at #{@start_date}\n" if @options.verbose
       
       output_options if @options.verbose
-            
-      case sort!(@arguments[0], @arguments[1])
+      case set_path!(@arguments[0], @arguments[1])
         when 1
           puts "Source directory doesn't exists!"
           exit 1
@@ -41,6 +43,7 @@ class ImgSort
           puts "Source directory is empty!"
           exit 2
       end
+      unsort? ? unsort! : sort!
 
       @end_date = Time.now
       puts "Finished at #{@end_date}\n" if @options.verbose
@@ -57,14 +60,19 @@ class ImgSort
       opts = OptionParser.new do |x|
         x.banner= "img-sort [options] <source dir> <dst dir>"
         x.on('-v', '--version', 'Show version')  { output_version ; exit 0 }
-        x.on('-u', '--usage', 'Show usage')  { puts @opt_parser;  exit }
+        x.on('-u', '--usage', 'Show usage')  { puts @opt_parser;  exit 0 }
         x.on('-V', '--verbose', 'Be verbose')  { @options.verbose = true }  
         x.on('-q', '--quiet', 'Be quite')  { @options.quiet = true }
         x.on('-h', '--rename', 'Change file name to hash from that file (default)') {@options.rename = true}
-        x.on('-n', '--no-rename', 'Save original name') {@options.rename = false}        
+        x.on('-n', '--no-rename', 'Save original name') {@options.rename = false}
+        x.on('-U', '--unsort', 'Oposite of sort') { @options.unsort = true}
+        x.on('-c', '--copy', 'Copy instead of link (default on sorting operation)') { @options.copy = true if unsort? }
       end
       return opts
       
+    end
+    def unsort?
+      @options.unsort
     end
 
   
@@ -111,12 +119,32 @@ class ImgSort
     def output_version
       puts "#{File.basename(__FILE__)} version #{VERSION}"
     end
-    
-    def sort!(from, to)
+    def set_path!(from, to)
       @from = File.expand_path(from)
       @to = File.expand_path(to)
       return 1 unless Dir.exists?(@from)
       return 2 if Dir.entries(@from).count <= 2
+    end
+    def unsort!
+      @files = Dir.glob("#{@from}/**/*.{png,jpg,jpeg,gif,tiff,bmp}")
+      puts "Found #{@files.count} files" unless @options.quite
+      return 2 if @files.empty?
+      FileUtils.mkdir @to unless Dir.exists?(@to)
+      count =  0
+      @total = @files.length
+      @files.each do |file|
+        count += 1
+        if @options.copy
+          FileUtils.cp file, "#{@to}/#{File.basename(file)}", :force => true
+          puts file ' copied' if @options.verbose
+        else
+          FileUtils.ln file, "#{@to}/#{File.basename(file)}", :force => true
+          puts file + ' linked' if @options.verbose
+        end
+      end
+    end
+
+    def sort!
       @files = Dir.glob("#{@from}/*.{png,jpg,jpeg,gif,tiff,bmp}")
       puts "Found #{@files.count} files" unless @options.quite     
       return 2 if @files.empty?
@@ -143,6 +171,5 @@ class ImgSort
         puts file + ' copied' if @options.verbose
       end
     end
-
 end
 
